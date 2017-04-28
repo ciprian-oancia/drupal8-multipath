@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form.
+ *
+ * Adds a new submit hook to the node form.
+ *
+ * @see node_save_redirect_form_node_form_submit()
+ */
+function domains_rewrites_dynamicaly_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][0] = 'node_save_redirect_form_node_form_submit';
+        }
+    }
+}
+
+function node_save_redirect_form_node_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+    $config_factory =\Drupal::configFactory()->getEditable('domains_rewrites_dynamicaly.settings');
+    $node = $form_state->getFormObject()->getEntity();
+    $prefix_node = $config_factory->get('rewrites_path_prefix');
+        if ($redirect = \Drupal::pathValidator()
+            ->getUrlIfValid('/'.$prefix_node.'/node/' . $node->id())
+        ) {
+            $form_state->setRedirectUrl($redirect);
+        }
+
+    }
+
+

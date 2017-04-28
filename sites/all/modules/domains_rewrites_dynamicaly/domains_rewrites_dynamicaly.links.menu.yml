@@ -1,0 +1,6 @@
+domains_rewrites_dynamicaly.settings_form:
+  title: 'Manage URL Prefix'
+  parent: system.admin_config_search
+  description: 'Manage URL Prefix.'
+  weight: -100
+  route_name: domains_rewrites_dynamicaly.settings_form
