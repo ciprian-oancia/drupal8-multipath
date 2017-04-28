@@ -1,6 +1,0 @@
-services:
-  purl.modifier_index:
-    class: Drupal\domains_rewrites_dynamicaly\Plugin\ModifierDynamicIndex
-    arguments:
-      - '@purl.plugin.provider_manager'
-      - '@database'

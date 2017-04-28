@@ -1,7 +1,0 @@
-domains_rewrites_dynamicaly.settings_form:
-  path: '/admin/config/acsf-multipath'
-  defaults:
-    _form: '\Drupal\domains_rewrites_dynamicaly\Form\RewritesDynamicalyForm'
-    _title: 'Path domains rewrites dynamicaly'
-  requirements:
-    _permission: 'access path domains rewrites'
