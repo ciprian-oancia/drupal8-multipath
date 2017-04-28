@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function purl_schema() {
+  $schema['purl_providers_settings'] = array(
+    'fields' => array(
+      'provider' => array(
+        'description' => '',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'method' => array(
+        'description' => '',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'settings' => array(
+        'description' => '',
+        'type' => 'text',
+        'not null' => true,
+        'size' => 'medium',
+      ),
+      'rebuild' => array(
+        'description' => '',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array(array('provider', 191)),
+    'description' => 'PURL provider settings',
+    );
+
+  $schema['purl_modifiers'] = array(
+    'fields' => array(
+      'provider' => array(
+        'description' => '',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'modifier' => array(
+        'description' => '',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'value' => array(
+        'description' => '',
+        'type' => 'text',
+        'not null' => true,
+        'mysql_type' => 'mediumtext',
+      ),
+    ),
+    'primary key' => array(array('provider', 191), array('modifier', 191)),
+    'description' => 'Index of PURL modifiers',
+  );
+
+  return $schema;
+}
+
